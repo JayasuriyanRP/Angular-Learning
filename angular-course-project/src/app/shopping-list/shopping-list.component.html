@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <hr />
+    <ul class="list-group">
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        appTestDirective
+        *ngFor="let ingredient of ingredients"
+      >
+        {{ ingredient.name }} ({{ ingredient.amount }})
+      </a>
+    </ul>
+    <p appTestDirective [defaultColor]="'pink'" [highlightColor]="'green'">
+      Test Input
+    </p>
+    <button class="btn btn-primary" (click)="notClicked = !notClicked">
+      Toggle
+      <span *appUnless="!notClicked">clicked</span>
+      <span *appUnless="notClicked">NotClicked</span>
+    </button>
+  </div>
+</div>
