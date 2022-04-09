@@ -5,7 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { Recipe } from '../recipe-list/recipe.model';
@@ -19,15 +19,18 @@ import { RecipesService } from '../recipies.service';
 export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   recipe: Recipe;
   subscriptionOb: Subscription;
+  id: number;
 
   constructor(
     private recipeService: RecipesService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe((params) => {
-      this.recipe = this.recipeService.getRecipe(+params['id']);
+      this.id = +params['id'];
+      this.recipe = this.recipeService.getRecipe(this.id);
     });
 
     let observableProp = new Observable<number>((observe) => {
@@ -66,5 +69,10 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
+
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }
