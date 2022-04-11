@@ -18,6 +18,9 @@ import { RouterModule } from '@angular/router';
 import { AppRoute as AppRouteModule } from './app-routing.module';
 import { PleaseSelectComponent } from './please-select/please-select.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     NotFoundComponent,
     PleaseSelectComponent,
     RecipeEditComponent,
+    ShortenPipe,
+    FilterPipe,
+    ReversePipe,
   ],
   imports: [BrowserModule, FormsModule, AppRouteModule, ReactiveFormsModule],
   providers: [],

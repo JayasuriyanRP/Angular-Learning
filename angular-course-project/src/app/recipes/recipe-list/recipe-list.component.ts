@@ -19,6 +19,11 @@ import { Subscription } from 'rxjs';
 export class RecipeListComponent implements OnInit, OnDestroy {
   @Output('onRecipeSelected') OnRecipeSelected = new EventEmitter<Recipe>();
 
+  pageStatus = new Promise((resolver) => {
+    setTimeout(() => {
+      resolver('Loaded');
+    }, 2000);
+  });
   private recipeSubscription: Subscription;
   recipes: Recipe[] = [];
   constructor(

@@ -4,10 +4,22 @@
   </div>
 </div>
 <hr />
+<h4>Page Loading status (async pipe) : {{ pageStatus | async }}</h4>
+<br />
+<div class="col">
+  <div class="row-s-8">
+    <label for="">Filter by Title (sync custom pipe)</label>
+    <input type="text" class="form-control" #filterText />
+  </div>
+</div>
+<hr />
 <div class="row">
   <div class="col-xs-12">
     <app-recipe-item
-      *ngFor="let recipe of recipes; let itemIndex = index"
+      *ngFor="
+        let recipe of recipes | filter: filterText.value:'name';
+        let itemIndex = index
+      "
       [recipe]="recipe"
       [index]="itemIndex"
     ></app-recipe-item>

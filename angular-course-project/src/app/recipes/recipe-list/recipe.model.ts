@@ -4,6 +4,7 @@ export class Recipe {
   public description: string;
   public imagePath: string;
   public ingredients: Ingredient[];
+  public createdDate: Date;
 
   /**
    *
@@ -12,11 +13,13 @@ export class Recipe {
     name: string,
     desc: string,
     image: string,
-    ingredients: Ingredient[]
+    ingredients: Ingredient[],
+    createdDate?: Date
   ) {
     this.imagePath = image;
     this.name = name;
     this.description = desc;
     this.ingredients = ingredients;
+    this.createdDate = new Date();
   }
 }

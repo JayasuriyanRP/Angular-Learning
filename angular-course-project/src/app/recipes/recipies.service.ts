@@ -20,7 +20,8 @@ export class RecipesService {
         new Ingredient('Potato', 1),
         new Ingredient('Onion', 1),
         new Ingredient('Tomato', 1),
-      ]
+      ],
+      
     ),
     new Recipe(
       'Test 1',

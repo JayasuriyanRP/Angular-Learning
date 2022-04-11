@@ -35,7 +35,8 @@ export class RecipeEditComponent implements OnInit {
       this.recipeForm.value['name'],
       this.recipeForm.value['description'],
       this.recipeForm.value['imageURL'],
-      this.recipeForm.value['ingredients']
+      this.recipeForm.value['ingredients'],
+      new Date()
     );
     console.log(recipe);
     console.log(this.recipeForm.value);
@@ -82,6 +83,7 @@ export class RecipeEditComponent implements OnInit {
       description: '',
       imagePath: '',
       ingredients: [],
+      createdDate: null,
     };
     let recipeIngredients = new FormArray([]);
 
