@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { PleaseSelectComponent } from './please-select/please-select.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeResolverService } from './recipes/recipes.resolver';
 
 const routes: Routes = [
   {
@@ -28,10 +29,12 @@ const routes: Routes = [
       {
         path: ':id',
         component: RecipeDetailComponent,
+        resolve: [RecipeResolverService],
       },
       {
         path: ':id/edit',
         component: RecipeEditComponent,
+        resolve: [RecipeResolverService],
       },
     ],
   },

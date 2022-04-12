@@ -10,32 +10,33 @@ import { Subject } from 'rxjs';
 export class RecipesService {
   recipeChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Test',
-      'Testing new recipe',
-      'https://www.archanaskitchen.com/images/archanaskitchen/1-Author/sibyl_sunitha/Tamil_Nadu_Style_Dal_Masala_Vada_with_Cabbage_Recipe__.jpg',
-      [
-        new Ingredient('Jeera', 1),
-        new Ingredient('Potato', 1),
-        new Ingredient('Onion', 1),
-        new Ingredient('Tomato', 1),
-      ],
-      
-    ),
-    new Recipe(
-      'Test 1',
-      'This is a test recipe',
-      'https://caitlinmarceau.com/wp-content/uploads/2019/10/top-12-dishes-of-tamil-nadu.jpg',
-      [
-        new Ingredient('Mutton', 1),
-        new Ingredient('Ginger', 1),
-        new Ingredient('Onion', 1),
-        new Ingredient('Tomato', 1),
-        new Ingredient('Sea weed', 1),
-      ]
-    ),
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Test',
+  //     'Testing new recipe',
+  //     'https://www.archanaskitchen.com/images/archanaskitchen/1-Author/sibyl_sunitha/Tamil_Nadu_Style_Dal_Masala_Vada_with_Cabbage_Recipe__.jpg',
+  //     [
+  //       new Ingredient('Jeera', 1),
+  //       new Ingredient('Potato', 1),
+  //       new Ingredient('Onion', 1),
+  //       new Ingredient('Tomato', 1),
+  //     ]
+  //   ),
+  //   new Recipe(
+  //     'Test 1',
+  //     'This is a test recipe',
+  //     'https://caitlinmarceau.com/wp-content/uploads/2019/10/top-12-dishes-of-tamil-nadu.jpg',
+  //     [
+  //       new Ingredient('Mutton', 1),
+  //       new Ingredient('Ginger', 1),
+  //       new Ingredient('Onion', 1),
+  //       new Ingredient('Tomato', 1),
+  //       new Ingredient('Sea weed', 1),
+  //     ]
+  //   ),
+  // ];
+
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
 
@@ -63,6 +64,11 @@ export class RecipesService {
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
+    this.recipeChanged.next(this.recipes.slice());
+  }
+
+  setRecipies(recipes: Recipe[]) {
+    this.recipes = recipes;
     this.recipeChanged.next(this.recipes.slice());
   }
 }

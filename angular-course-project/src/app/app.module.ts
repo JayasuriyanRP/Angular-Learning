@@ -21,6 +21,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
     FilterPipe,
     ReversePipe,
   ],
-  imports: [BrowserModule, FormsModule, AppRouteModule, ReactiveFormsModule],
+  imports: [BrowserModule, FormsModule, AppRouteModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
