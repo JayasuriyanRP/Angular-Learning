@@ -8,6 +8,7 @@ import { PleaseSelectComponent } from './please-select/please-select.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeResolverService } from './recipes/recipes.resolver';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuardService } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: 'recipes',
     component: RecipesComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
