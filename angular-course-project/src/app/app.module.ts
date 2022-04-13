@@ -21,7 +21,10 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptor as AuthInterceptorService } from './auth/auth-intreceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,9 +45,23 @@ import { HttpClientModule } from '@angular/common/http';
     ShortenPipe,
     FilterPipe,
     ReversePipe,
+    AuthComponent,
+    LoadingSpinner,
   ],
-  imports: [BrowserModule, FormsModule, AppRouteModule, ReactiveFormsModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRouteModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
