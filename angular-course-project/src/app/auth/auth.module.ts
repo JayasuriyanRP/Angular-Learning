@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     RouterModule.forChild([
       {
-        path: 'auth',
+        path: '',
         component: AuthComponent,
       },
     ]),
