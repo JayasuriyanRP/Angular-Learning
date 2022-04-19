@@ -25,6 +25,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptor as AuthInterceptorService } from './auth/auth-intreceptor.service';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './directive/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { AuthInterceptor as AuthInterceptorService } from './auth/auth-intrecept
     ReversePipe,
     AuthComponent,
     LoadingSpinner,
+    AlertComponent,
+    PlaceholderDirective,
   ],
   imports: [
     BrowserModule,
