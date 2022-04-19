@@ -17,39 +17,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'recipes',
-    component: RecipesComponent,
-    canActivate: [AuthGuardService],
-    children: [
-      {
-        path: '',
-        component: PleaseSelectComponent,
-      },
-      {
-        path: 'new',
-        component: RecipeEditComponent,
-      },
-      {
-        path: ':id',
-        component: RecipeDetailComponent,
-        resolve: [RecipeResolverService],
-      },
-      {
-        path: ':id/edit',
-        component: RecipeEditComponent,
-        resolve: [RecipeResolverService],
-      },
-    ],
-  },
-  {
-    path: 'shopping-list',
-    component: ShoppingListComponent,
-  },
-  {
-    path: 'auth',
-    component: AuthComponent,
-  },
-  {
     path: 'not-found',
     component: NotFoundComponent,
   },
