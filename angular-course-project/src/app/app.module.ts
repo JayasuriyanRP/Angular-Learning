@@ -24,6 +24,9 @@ import { RecipesModule } from './recipes/recipes.module';
 import { ShoppinglistModule } from './shopping-list/shoppinglist.module';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import * as fromShoppingList from './shopping-list/store/shopping-list.reducer';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { AuthModule } from './auth/auth.module';
     AppRouteModule,
     HttpClientModule,
     SharedModule,
+    StoreModule.forRoot({ shoppingList: shoppingListReducer }),
   ],
   providers: [
     {
