@@ -8,7 +8,7 @@
       >
         <span class="icon-bar" *ngFor="let icons of [1, 2, 3]"> </span>
       </button>
-      <a routerLink="/recipes" class="navbar-brand">Recipe Book</a>
+      <a routerLink="" class="navbar-brand">Recipe Book</a>
     </div>
 
     <div
@@ -29,7 +29,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="isAuthenticated">
-          <a style="cursor: pointer" (click)="onLogout()"><span>Logout</span></a>
+          <a style="cursor: pointer" (click)="onLogout()"
+            ><span>Logout</span></a
+          >
         </li>
         <li class="dropdown" appDropdown *ngIf="isAuthenticated">
           <a class="dropdown-toggle" role="button"

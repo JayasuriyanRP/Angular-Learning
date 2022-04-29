@@ -25,7 +25,7 @@ export class DataStorageService {
         recipes
       )
       .subscribe((response) => {
-        console.log(response);
+        //console.log(response);
       });
   }
 
@@ -44,10 +44,10 @@ export class DataStorageService {
           });
         }),
         tap((recipes) => {
-          console.log(recipes);
+          //console.log(recipes);
           this.recipeService.setRecipies(recipes);
         })
-        );
+      );
     // return this.httpClient
     //   .get<Recipe[]>(
     //     'https://recipebook-backend-app-default-rtdb.firebaseio.com/recipes.json'

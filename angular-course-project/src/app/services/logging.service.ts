@@ -2,7 +2,7 @@ export class LoggingService implements ILoggingService {
   constructor() {}
 
   logMessage(message: string) {
-    console.log(message);
+    //console.log(message);
   }
 }
 

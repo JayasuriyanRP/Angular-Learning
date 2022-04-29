@@ -22,7 +22,7 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Recipe[] | Observable<Recipe[]> | Promise<Recipe[]> {
-    console.log(route, state);
+    //console.log(route, state);
     const recipes = this.recipeService.Recipes;
     if (recipes.length === 0) {
       return this.dataStorageService.fetchRecipies();

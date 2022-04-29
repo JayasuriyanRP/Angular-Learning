@@ -38,14 +38,14 @@ export class RecipeEditComponent implements OnInit {
       this.recipeForm.value['ingredients'],
       new Date()
     );
-    console.log(recipe);
-    console.log(this.recipeForm.value);
+    //console.log(recipe);
+    //console.log(this.recipeForm.value);
     if (this.isEditMode) {
       this.recipesService.updateRecipe(+this.id, recipe);
     } else {
       this.recipesService.addRecipe(recipe);
     }
-    console.log(this.recipeForm);
+    //console.log(this.recipeForm);
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 

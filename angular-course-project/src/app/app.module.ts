@@ -25,8 +25,14 @@ import { ShoppinglistModule } from './shopping-list/shoppinglist.module';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 import * as fromShoppingList from './shopping-list/store/shopping-list.reducer';
+import * as fromApp from './store/app.reducer';
+import { AuthEffects } from './auth/store/auth.effect';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,10 @@ import * as fromShoppingList from './shopping-list/store/shopping-list.reducer';
     AppRouteModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forRoot({ shoppingList: shoppingListReducer }),
+    StoreModule.forRoot(fromApp.appReducer),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     {
