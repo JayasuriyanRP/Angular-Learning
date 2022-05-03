@@ -9,7 +9,9 @@ import { Recipe } from './recipe.model';
 import { LoggingService } from '../../services/logging.service';
 import { RecipesService } from '../recipies.service';
 import { Subscription } from 'rxjs';
-
+import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -28,17 +30,19 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
   constructor(
     private loggingService: LoggingService,
-    private recipeService: RecipesService
-  ) {}
+    private recipeService: RecipesService,
+    private store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
-    this.recipeSubscription = this.recipeService.recipeChanged.subscribe(
+
+    this.recipeSubscription = this.store.select('recipes').pipe(map(recipesState => recipesState.recipes)).subscribe(
       (recipes) => {
         //console.log('Change Called', recipes);
         this.recipes = recipes;
       }
     );
-    this.recipes = this.recipeService.Recipes;
+    //this.recipes = this.recipeService.Recipes;
   }
 
   ngOnDestroy(): void {

@@ -2,10 +2,44 @@ import { Action } from '@ngrx/store';
 import { Recipe } from '../recipe-list/recipe.model';
 
 export const SET_RECIPES = '[Recipes] Set Recipes';
+export const FETCH_RECIPES = '[Recipes] Fetch Recipes';
+export const STORE_RECIPES = '[Recipes] Store Recipes';
+export const ADD_RECIPE = '[Recipes] Add Recipe';
+export const DELETE_RECIPE = '[Recipes] Delete Recipe';
+export const UPDATE_RECIPE = '[Recipes] Update Recipe';
 
 export class SetRecipes implements Action {
-  type: string = SET_RECIPES;
-  constructor(public payload: Recipe[]) {}
+  readonly type: string = SET_RECIPES;
+  constructor(public payload: Recipe[]) { }
 }
 
-export type Actions = SetRecipes;
+export class FetchRecipes implements Action {
+  readonly type = FETCH_RECIPES;
+  payload = null;
+}
+
+export class StoreRecipes implements Action{
+  readonly type = STORE_RECIPES;
+  payload = null;
+}
+
+export class AddRecipe implements Action {
+  readonly type = ADD_RECIPE;
+  constructor(public payload: Recipe) {
+  }
+}
+
+export class DeleteRecipe implements Action {
+  readonly type = DELETE_RECIPE;
+  constructor(public payload: number) {
+  }
+}
+
+export class UpdateRecipe implements Action {
+  readonly type = UPDATE_RECIPE;
+  constructor(public payload: { index: number, recipe: Recipe }) {
+  }
+}
+
+
+export type Actions = SetRecipes | FetchRecipes | AddRecipe | UpdateRecipe | DeleteRecipe | StoreRecipes;

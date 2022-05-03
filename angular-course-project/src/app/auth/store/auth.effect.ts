@@ -28,6 +28,7 @@ const handleAuthentication = (
     id: id,
     _token: token,
     _expiryTime: expirationDate,
+    redirect: true
   });
 };
 
@@ -107,7 +108,7 @@ export class AuthEffects {
           return this.httpClient
             .post<IAuthLoginResponseData>(
               'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-                environment.backendApiKey,
+              environment.backendApiKey,
               {
                 email: authData.payload.email,
                 password: authData.payload.password,
@@ -143,7 +144,7 @@ export class AuthEffects {
         return this.httpClient
           .post<IAuthSignupResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-              environment.backendApiKey,
+            environment.backendApiKey,
             {
               email: signupAction.payload.email,
               password: signupAction.payload.password,
@@ -172,8 +173,11 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.AUTH_SUCCESS),
-        tap(() => {
-          this.router.navigate(['/recipes']);
+        tap(authSuccessAction => {
+          if (authSuccessAction.payload.redirect) {
+
+            this.router.navigate(['/recipes']);
+          }
         })
       );
     },
@@ -213,6 +217,7 @@ export class AuthEffects {
             id: loadedUser.id,
             _token: loadedUser.token,
             _expiryTime: new Date(user._tokenExpirationDate),
+            redirect: false
           });
           //this.user.next(loadedUser);
           //this.autoLogout(expiration);
@@ -243,5 +248,5 @@ export class AuthEffects {
     private httpClient: HttpClient,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 }
